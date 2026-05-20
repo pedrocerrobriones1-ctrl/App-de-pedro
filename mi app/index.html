@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi App de Prueba</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 50px; background-color: #f4f4f4; }
+        .contenedor { background: white; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        .caja { margin-bottom: 15px; }
+        input { padding: 10px; width: 90%; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px; width: 100%; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h2>Iniciar Sesión</h2>
+        <p>App de prueba de conexión</p>
+        
+        <div class="caja">
+            <label>Correo:</label><br>
+            <input type="email" id="correoInput" placeholder="Ej: prueba@correo.com">
+        </div>
+        
+        <div class="caja">
+            <label>Clave:</label><br>
+            <input type="password" id="claveInput" placeholder="Tu clave">
+        </div>
+        
+        <button id="botonEnviar">Entrar</button>
+    </div>
+
+    <script type="module">
+        // 1. Traemos las herramientas de Firebase desde internet
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        // 2. Tu llave secreta exacta (la que me acabas de dar)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCCee44HaI_Gk5R_6fHeezEHQ0CciU2fmY",
+            authDomain: "app-prueba-b6c8b.firebaseapp.com",
+            projectId: "app-prueba-b6c8b",
+            storageBucket: "app-prueba-b6c8b.firebasestorage.app",
+            messagingSenderId: "81316242382",
+            appId: "1:81316242382:web:8a523d79dbff6ba892419f"
+        };
+
+        // 3. Conectamos la app y la base de datos
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 4. Le decimos al botón qué hacer cuando le hagan clic
+        const boton = document.getElementById("botonEnviar");
+        
+        boton.addEventListener("click", async () => {
+            // Capturamos el texto de las cajas
+            const correo = document.getElementById("correoInput").value;
+            const clave = document.getElementById("claveInput").value;
+
+            try {
+                // Lo enviamos a una carpeta llamada "datos_capturados" en tu base de datos
+                await addDoc(collection(db, "datos_capturados"), {
+                    correoIngresado: correo,
+                    claveIngresada: clave
+                });
+                alert("¡Misión cumplida! Los datos viajaron a la nube.");
+            } catch (error) {
+                alert("Hubo un error: " + error);
+            }
+        });
+    </script>
+</body>
+</html>
