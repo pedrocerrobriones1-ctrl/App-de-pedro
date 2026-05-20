@@ -4,12 +4,82 @@
     <meta charset="UTF-8">
     <title>Mi App de Prueba</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 50px; background-color: #f4f4f4; }
-        .contenedor { background: white; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        .caja { margin-bottom: 15px; }
-        input { padding: 10px; width: 90%; border: 1px solid #ccc; border-radius: 4px; }
-        button { padding: 10px; width: 100%; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
+        <style>
+        /* FONDO DE LA PÁGINA */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            padding: 50px; 
+            color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            
+            /* Aquí va la imagen de fondo (puedes cambiar este enlace por otro) */
+            background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-attachment: fixed; /* Deja la imagen fija */
+        }
+
+        /* CAJA PRINCIPAL TRASLÚCIDA */
+        .contenedor { 
+            /* El 0.85 al final le da transparencia para que se asome la imagen */
+            background: rgba(20, 20, 20, 0.85); 
+            padding: 40px 30px; 
+            border-radius: 20px; /* Bordes más redondeados */
+            width: 320px; 
+            box-shadow: 0px 15px 40px rgba(0,0,0,0.8); /* Sombra más grande */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde brillante sutil */
+            backdrop-filter: blur(8px); /* Efecto de vidrio empañado */
+        }
+        
+        h2 { margin-top: 0; color: #ffffff; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
+        p { text-align: center; color: #bbbbbb; font-size: 14px; margin-bottom: 25px; }
+        .caja { margin-bottom: 20px; }
+        label { font-size: 13px; font-weight: bold; color: #eeeeee; margin-left: 10px; }
+        
+        /* NUEVO FORMATO DE LOS RECUADROS */
+        input { 
+            padding: 15px; 
+            width: 85%; 
+            background-color: rgba(0, 0, 0, 0.5); /* Cajas semi-transparentes */
+            border: 2px solid #555; 
+            border-radius: 30px; /* Bordes estilo píldora */
+            color: white; 
+            margin-top: 8px;
+            text-align: center; /* Texto centrado al escribir */
+            transition: 0.3s; /* Transición suave al hacer clic */
+        }
+        
+        /* Efecto cuando haces clic en el recuadro para escribir */
+        input:focus { 
+            outline: none; 
+            border-color: #00d2ff; /* Cambia a celeste brillante */
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        /* BOTÓN MODERNO */
+        button { 
+            padding: 15px; 
+            width: 100%; 
+            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%); /* Degradado de colores */
+            color: white; 
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none; 
+            border-radius: 30px; /* Bordes estilo píldora */
+            cursor: pointer; 
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+        
+        /* Efecto al pasar el ratón por el botón */
+        button:hover { 
+            transform: scale(1.05); /* El botón crece un poquito */
+            box-shadow: 0px 5px 20px rgba(0, 210, 255, 0.5); /* Brilla */
+        }
+    </style>
     </style>
 </head>
 <body>
